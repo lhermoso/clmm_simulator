@@ -1,0 +1,316 @@
+/* Bloomberg Terminal Theme for CLMM Simulator */
+
+:root {
+  /* Bloomberg Terminal Color Palette */
+  --bb-black: #000000;
+  --bb-amber: #FFA500;
+  --bb-green: #00FF00;
+  --bb-red: #FF0000;
+  --bb-blue: #00BFFF;
+  --bb-gray: #808080;
+  --bb-dark-gray: #333333;
+  --bb-light-gray: #A0A0A0;
+  --bb-white: #FFFFFF;
+  --bb-yellow: #FFFF00;
+  --bb-cyan: #00FFFF;
+
+  /* Semantic Colors */
+  --bb-bg-primary: var(--bb-black);
+  --bb-bg-secondary: #0A0A0A;
+  --bb-text-primary: var(--bb-amber);
+  --bb-text-secondary: var(--bb-gray);
+  --bb-text-data: var(--bb-white);
+  --bb-positive: var(--bb-green);
+  --bb-negative: var(--bb-red);
+  --bb-neutral: var(--bb-gray);
+  --bb-border: var(--bb-dark-gray);
+
+  /* Typography */
+  --bb-font-mono: 'IBM Plex Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
+  --bb-font-size-xs: 10px;
+  --bb-font-size-sm: 11px;
+  --bb-font-size-base: 12px;
+  --bb-font-size-lg: 14px;
+  --bb-font-size-xl: 16px;
+  --bb-letter-spacing: 0.05em;
+  --bb-line-height: 1.4;
+}
+
+/* Global Terminal Styles */
+.bloomberg-terminal {
+  background-color: var(--bb-bg-primary);
+  color: var(--bb-text-primary);
+  font-family: var(--bb-font-mono);
+  font-size: var(--bb-font-size-base);
+  letter-spacing: var(--bb-letter-spacing);
+  line-height: var(--bb-line-height);
+  min-height: 100vh;
+}
+
+/* Header Bar */
+.bb-header {
+  background-color: var(--bb-bg-secondary);
+  border-bottom: 2px solid var(--bb-amber);
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--bb-font-size-sm);
+  text-transform: uppercase;
+}
+
+.bb-header-title {
+  color: var(--bb-amber);
+  font-weight: bold;
+  font-size: var(--bb-font-size-xl);
+  letter-spacing: 0.15em;
+}
+
+.bb-header-subtitle {
+  color: var(--bb-text-secondary);
+  font-size: var(--bb-font-size-sm);
+  margin-left: 20px;
+}
+
+.bb-header-info {
+  color: var(--bb-text-secondary);
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+/* Panels and Cards */
+.bb-panel {
+  background-color: var(--bb-bg-primary);
+  border: 1px solid var(--bb-border);
+  margin-bottom: 12px;
+}
+
+.bb-panel-header {
+  background-color: var(--bb-bg-secondary);
+  border-bottom: 1px solid var(--bb-amber);
+  padding: 8px 12px;
+  color: var(--bb-amber);
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: var(--bb-font-size-sm);
+  letter-spacing: 0.1em;
+}
+
+.bb-panel-content {
+  padding: 12px;
+}
+
+/* Data Grid */
+.bb-data-grid {
+  display: grid;
+  gap: 1px;
+  background-color: var(--bb-border);
+  padding: 1px;
+}
+
+.bb-data-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+}
+
+.bb-data-cell {
+  background-color: var(--bb-bg-primary);
+  padding: 6px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bb-data-label {
+  color: var(--bb-text-secondary);
+  font-size: var(--bb-font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.bb-data-value {
+  color: var(--bb-text-data);
+  font-weight: 500;
+  font-family: var(--bb-font-mono);
+}
+
+/* Value Display Styles */
+.bb-value-positive {
+  color: var(--bb-positive);
+  font-weight: 500;
+}
+
+.bb-value-negative {
+  color: var(--bb-negative);
+  font-weight: 500;
+}
+
+.bb-value-neutral {
+  color: var(--bb-text-data);
+}
+
+/* Sliders */
+.bb-slider {
+  width: 100%;
+  height: 4px;
+  background: var(--bb-dark-gray);
+  outline: none;
+  transition: opacity 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.bb-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: var(--bb-amber);
+  cursor: pointer;
+  border: 1px solid var(--bb-black);
+}
+
+.bb-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  background: var(--bb-amber);
+  cursor: pointer;
+  border: 1px solid var(--bb-black);
+}
+
+/* Input Fields */
+.bb-input {
+  background-color: var(--bb-bg-secondary);
+  border: 1px solid var(--bb-dark-gray);
+  color: var(--bb-text-data);
+  padding: 4px 8px;
+  font-family: var(--bb-font-mono);
+  font-size: var(--bb-font-size-base);
+  letter-spacing: 0.05em;
+}
+
+.bb-input:focus {
+  outline: none;
+  border-color: var(--bb-amber);
+}
+
+/* Buttons */
+.bb-button {
+  background-color: var(--bb-bg-secondary);
+  color: var(--bb-amber);
+  border: 1px solid var(--bb-amber);
+  padding: 6px 12px;
+  font-family: var(--bb-font-mono);
+  font-size: var(--bb-font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.bb-button:hover {
+  background-color: var(--bb-amber);
+  color: var(--bb-black);
+}
+
+.bb-button:active {
+  transform: translateY(1px);
+}
+
+/* Select Dropdown */
+.bb-select {
+  background-color: var(--bb-bg-secondary);
+  border: 1px solid var(--bb-dark-gray);
+  color: var(--bb-text-data);
+  padding: 4px 8px;
+  font-family: var(--bb-font-mono);
+  font-size: var(--bb-font-size-base);
+  cursor: pointer;
+}
+
+.bb-select:focus {
+  outline: none;
+  border-color: var(--bb-amber);
+}
+
+/* Badge */
+.bb-badge {
+  display: inline-block;
+  padding: 2px 6px;
+  font-size: var(--bb-font-size-xs);
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  background-color: var(--bb-amber);
+  color: var(--bb-black);
+  text-transform: uppercase;
+}
+
+.bb-badge-success {
+  background-color: var(--bb-green);
+}
+
+.bb-badge-danger {
+  background-color: var(--bb-red);
+}
+
+.bb-badge-info {
+  background-color: var(--bb-blue);
+}
+
+/* Position Status */
+.bb-position-in-range {
+  background-color: rgba(0, 255, 0, 0.1);
+  border: 1px solid var(--bb-green);
+}
+
+.bb-position-out-range {
+  background-color: rgba(255, 0, 0, 0.1);
+  border: 1px solid var(--bb-red);
+}
+
+/* Scrollbar Styling */
+.bloomberg-terminal ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.bloomberg-terminal ::-webkit-scrollbar-track {
+  background: var(--bb-bg-secondary);
+}
+
+.bloomberg-terminal ::-webkit-scrollbar-thumb {
+  background: var(--bb-dark-gray);
+  border: 1px solid var(--bb-amber);
+}
+
+.bloomberg-terminal ::-webkit-scrollbar-thumb:hover {
+  background: var(--bb-gray);
+}
+
+/* Animations */
+@keyframes bb-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.bb-blink {
+  animation: bb-blink 1s infinite;
+}
+
+/* Responsive Utilities */
+@media (max-width: 768px) {
+  .bb-data-cell {
+    padding: 4px 8px;
+    font-size: var(--bb-font-size-sm);
+  }
+
+  .bb-header {
+    padding: 8px 12px;
+  }
+
+  .bb-panel-content {
+    padding: 8px;
+  }
+}
