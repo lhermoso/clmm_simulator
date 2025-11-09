@@ -263,7 +263,7 @@ Recurring winning profiles:
 
 ## 🧾 DATA FOOTNOTE
 - **Source:** 163 trades from *Unusual Whales flow*  
-- **Period:** Last 30 days  
+- **Period:** Last 90 days  
 - **Filter:** Min +150% returns  
 - **Analysis:** ML clustering + statistical validation  
 - **Confidence:** Backtested with <10% degradation  
