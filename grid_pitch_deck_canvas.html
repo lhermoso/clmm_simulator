@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GRID | Pitch Deck</title>
+  <style>
+    :root{
+      /* GRID brand-inspired dark palette: black/charcoal base + amber accents */
+      --bg-start:#0a0a0a; 
+      --bg-end:#0f1115; 
+      --card:#0b0f14; 
+      --text:#e5e7eb; 
+      --muted:#9ca3af;
+      --primary:#f59e0b;      /* amber */
+      --primary-2:#fbbf24;    /* amber/bright */
+      --accent:#f97316;       /* orange */
+      --success:#22c55e;      /* green for gains */
+      --warn:#f59e0b;         
+      --danger:#ef4444;       /* red for losses */
+
+      --ring: rgba(245,158,11,.35);
+      --shadow: 0 28px 70px rgba(0, 0, 0, 0.55);
+
+      --radius-xl: 22px; 
+      --radius-md: 12px;
+
+      --h1: clamp(36px, 5vw, 56px); 
+      --h2: clamp(28px, 3.6vw, 40px); 
+      --h3: clamp(20px, 2.4vw, 26px); 
+      --body: clamp(17px, 1.6vw, 20px); 
+      --small: 14px;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+      color:var(--text);
+      background: radial-gradient(1200px 800px at 10% 0%, rgba(245,158,11,.08) 0%, transparent 60%),
+                  linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+      background-attachment: fixed; 
+      overflow-x:hidden;
+    }
+
+    .container{max-width:1060px;margin:0 auto;padding:48px 22px}
+
+    .slide{
+      background:var(--card);
+      border-radius:var(--radius-xl);
+      padding:64px clamp(28px, 4vw, 64px);
+      margin-bottom:42px;
+      box-shadow:var(--shadow);
+      min-height:600px;
+      display:flex;flex-direction:column;justify-content:center;position:relative;
+      border:1px solid rgba(245,158,11,.22)
+    }
+
+    .slide-number{position:absolute;top:18px;right:26px;color:#cbd5e1;font-size:13px;font-weight:600;letter-spacing:.06em}
+
+    h1{font-size:var(--h1);line-height:1.15;margin-bottom:.3em;color:var(--primary);letter-spacing:.01em}
+    h2{font-size:var(--h2);line-height:1.2;margin-bottom:22px;color:var(--text);border-bottom:2px solid rgba(245,158,11,.25);padding-bottom:10px}
+    h3{font-size:var(--h3);margin:26px 0 14px;color:var(--text)}
+
+    .tagline{font-size:clamp(18px, 2.2vw, 22px);color:var(--muted);margin-bottom:26px;font-weight:500}
+
+    ul{list-style:none;padding-left:0;margin-top:6px}
+    li{font-size:var(--body);line-height:1.75;margin-bottom:12px;padding-left:30px;position:relative;color:var(--text)}
+    li::before{content:">";position:absolute;left:0;top:0.05em;color:var(--primary);font-weight:800}
+
+    .metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:24px;margin:30px 0 10px}
+    .metric-card{position:relative;border-radius:16px;padding:24px;text-align:center;background:linear-gradient(135deg, rgba(245,158,11,.10), rgba(249,191,36,.09));outline:1px solid rgba(245,158,11,.28)}
+    .metric-card::after{content:"";position:absolute;inset:-1px;border-radius:inherit;background:linear-gradient(135deg, rgba(245,158,11,.6), rgba(249,191,36,.4));z-index:-1;filter:blur(18px);opacity:.34}
+    .metric-value{font-size:clamp(26px,3vw,36px);font-weight:800;margin-bottom:6px;color:#ffffff}
+    .metric-label{font-size:15px;color:var(--muted);opacity:.95}
+
+    .highlight{background:linear-gradient(135deg, rgba(245,158,11,.10), rgba(249,191,36,.08));border:1px solid rgba(245,158,11,.35);color:var(--text);padding:18px 22px;border-radius:14px;font-size:18px;margin:24px 0 8px}
+
+    .callout{background: rgba(245,158,11,.06);border-left:4px solid var(--primary);padding:14px 16px;margin-top:18px;border-radius:10px;color:var(--text)}
+
+    .two-column{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin:18px 0}
+
+    strong{color:#ffffff;font-weight:700}
+    .em{color:var(--primary);font-weight:700}
+
+    .visual-placeholder{background:#0f141a;border:2px dashed #334155;color:#94a3b8;padding:40px;text-align:center;border-radius:14px;font-style:italic;margin:20px 0}
+
+    .chip{display:inline-block;font-size:12px;letter-spacing:.02em;font-weight:700;padding:4px 10px;border-radius:999px;margin-left:8px;background: rgba(245,158,11,.10);color:var(--text);border:1px solid rgba(245,158,11,.35)}
+
+    /* Flow diagram */
+    .flow{display:grid;grid-auto-flow:column;grid-auto-columns:max-content;align-items:center;gap:12px;padding:16px 18px;background:#0f141a;border:1px solid rgba(245,158,11,.35);border-radius:12px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .step{padding:10px 14px;background:#0b0f14;border:1px solid rgba(245,158,11,.35);border-radius:10px;white-space:nowrap;color:#fff;font-weight:700}
+    .arrow{color:var(--primary);font-weight:800;font-size:22px}
+
+    .performance{background:#0b1220;color:#e5e7eb;border-radius:14px;padding:18px 18px 16px;margin:16px 0}
+
+    .ok{color:var(--success);font-weight:700}
+    .down{color:var(--danger);font-weight:700}
+    .muted{color:var(--muted)}
+
+    table{width:100%;border-collapse:collapse;margin-top:12px}
+    th,td{border:1px solid rgba(245,158,11,.25);padding:10px 12px;text-align:left;font-size:15px}
+    th{background:rgba(245,158,11,.08)}
+
+    .smallnote{font-size:12px;color:var(--muted)}
+
+    @media (max-width:860px){.two-column{grid-template-columns:1fr}.slide{padding:48px 22px}}
+    @media print{.slide{page-break-after:always;box-shadow:none}}
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- 1: Cover / What is GRID -->
+    <section class="slide">
+      <span class="slide-number">1/13</span>
+      <h1>GRID</h1>
+      <p class="tagline">The impermanent loss killer: live on SOL/USDC, mitigating ~<strong>66%</strong> of IL with real capital over the last 60 days.</p>
+      <ul>
+        <li><strong>Mitigates ≈66% of IL today on SOL/USDC</strong>; long-term goal is to fully neutralize IL for DeFi LPs.</li>
+        <li><strong>Composable software layer</strong> that plugs into DEXes and LP managers — we ship code, not funds.</li>
+        <li>Targets any AMM / concentrated liquidity DEX where LPs suffer IL across chains.</li>
+      </ul>
+      <div class="highlight"><strong>Bottom line:</strong> we attack one of DeFi's biggest unsolved problems — impermanent loss — at the protocol level.</div>
+    </section>
+
+    <!-- 2: Problem -->
+    <section class="slide">
+      <span class="slide-number">2/13</span>
+      <h2>The Problem: Impermanent Loss is a Tax on Liquidity</h2>
+      <ul>
+        <li>LPs routinely <strong>underperform HODL</strong>: fees often fail to offset IL, especially in volatile pairs.</li>
+        <li>Managing IL today means bespoke bots, spreadsheets, and constant monitoring — <strong>not scalable</strong> for serious capital.</li>
+        <li>DEXes want deeper, stickier liquidity but <strong>can’t promise predictable outcomes</strong> to LPs because IL erodes returns.</li>
+      </ul>
+      <div class="highlight"><strong>If DeFi is the future of markets, IL is the hidden tax holding it back.</strong></div>
+    </section>
+
+    <!-- 3: Solution -->
+    <section class="slide">
+      <span class="slide-number">3/13</span>
+      <h2>Solution: Protocol-Level IL Mitigation</h2>
+      <ul>
+        <li><strong>On-chain engine</strong> that continuously estimates IL and hedges LP exposure using perps/spot to keep portfolios in band.</li>
+        <li><strong>Configurable policies</strong> for DEXes and LP managers: different risk bands, coverage levels, and fee splits.</li>
+        <li>Delivered as <strong>smart contracts + SDK</strong> that any LP vault, DEX, or strategy protocol can plug into.</li>
+      </ul>
+      <div class="callout"><strong>Today:</strong> ≈66% of IL mitigated vs unprotected SOL/USDC LP over the last 60 days with real capital. <strong>Roadmap:</strong> iterating toward 100% IL mitigation while preserving capital efficiency.</div>
+    </section>
+
+    <!-- 4: How it Works (flow) -->
+    <section class="slide">
+      <span class="slide-number">4/13</span>
+      <h2>How It Works</h2>
+      <p class="tagline">Plug into LP positions → estimate IL → hedge with perps/spot → rebalance → share the upside.</p>
+      <div class="flow" aria-label="Process Flow">
+        <div class="step">LP Capital</div>
+        <div class="arrow">→</div>
+        <div class="step">DEX LP Position</div>
+        <div class="arrow">↔</div>
+        <div class="step">GRID IL Engine</div>
+        <div class="arrow">→</div>
+        <div class="step">Perp / Spot Hedges</div>
+        <div class="arrow">→</div>
+        <div class="step">Auto Rebalances</div>
+        <div class="arrow">→</div>
+        <div class="step">IL Saved & PnL</div>
+      </div>
+      <div class="two-column">
+        <div>
+          <h3>Value Creation</h3>
+          <ul>
+            <li>LPs keep a much larger share of their fees instead of bleeding to IL.</li>
+            <li>DEXes can market <strong>protected liquidity</strong> pools to attract and retain capital.</li>
+            <li>Protocols can build vaults on top of GRID and charge their own fees.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Risk Management</h3>
+          <ul>
+            <li>Continuous IL estimation and hedge adjustments.</li>
+            <li>Policy-controlled drawdown bands and circuit breakers.</li>
+            <li>On-chain accounting of IL saved vs unhedged baseline.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="metrics">
+        <div class="metric-card"><div class="metric-value">≈66%</div><div class="metric-label">IL mitigated vs baseline*</div></div>
+        <div class="metric-card"><div class="metric-value">24/7</div><div class="metric-label">Automated monitoring & hedging</div></div>
+        <div class="metric-card"><div class="metric-value">Composable</div><div class="metric-label">Plugs into any AMM / CL DEX</div></div>
+      </div>
+      <p class="smallnote">*Based on live SOL/USDC deployment over the last 60 days; targets and future coverage levels are illustrative and subject to market conditions.</p>
+    </section>
+
+    <!-- 5: Competitive Matrix -->
+    <section class="slide">
+      <span class="slide-number">5/13</span>
+      <h2>Competitive Differentiation</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Approach</th>
+            <th>IL Mitigation</th>
+            <th>Composable for DEXes</th>
+            <th>Capital Efficiency</th>
+            <th>Integration Effort</th>
+            <th>Fee Model</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>GRID Protocol</strong></td>
+            <td><strong>≈66% today</strong> (target &gt;80%)</td>
+            <td><strong>Yes</strong> — SDK + contracts</td>
+            <td><strong>High</strong> — dynamic hedging</td>
+            <td>Low–Medium</td>
+            <td>Protocol fee on IL saved / TVL</td>
+          </tr>
+          <tr>
+            <td>Passive LP</td>
+            <td>0% (full IL)</td>
+            <td>N/A</td>
+            <td>Purely path-dependent</td>
+            <td>N/A</td>
+            <td>None</td>
+          </tr>
+          <tr>
+            <td>Rebalancing Bots</td>
+            <td>Partial, ad hoc</td>
+            <td>No standard interface</td>
+            <td>Medium; can overtrade</td>
+            <td>Custom per pool</td>
+            <td>Rev share / opaque</td>
+          </tr>
+          <tr>
+            <td>Options / Structured Products</td>
+            <td>High protection</td>
+            <td>Limited; complex</td>
+            <td>Lower net yield (premia)</td>
+            <td>High (pricing, risk)</td>
+            <td>Complex structuring fees</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout"><strong>Our edge:</strong> protocol-native IL mitigation that DEXes can integrate directly, without reinventing risk engines themselves.</div>
+    </section>
+
+    <!-- 6: Market -->
+    <section class="slide">
+      <span class="slide-number">6/13</span>
+      <h2>Market: Every LP Dollar Suffers IL</h2>
+      <div class="two-column">
+        <div>
+          <h3>Opportunity</h3>
+          <ul>
+            <li>Global DEX TVL in the tens of billions — all exposed to IL.</li>
+            <li>Concentrated liquidity AMMs (Uniswap v3-style) make IL more complex, not less.</li>
+            <li>Institutional LPs, treasuries, and DAOs want IL-managed exposure, not naked LP risk.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Wedge</h3>
+          <ul>
+            <li>Start with <strong>Solana + one flagship DEX</strong> where we already operate SOL/USDC strategies.</li>
+            <li>Example: a single DEX like Orca on Solana already has ≈$369M TVL — a natural first client for an IL-protection layer.</li>
+            <li>Charge a <strong>small protocol fee</strong> on IL saved / TVL; expand to other DEXes and chains.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="smallnote">* Precise TAM/SAM/SOM and TVL breakdowns are detailed in the Investor Deck & model.</p>
+    </section>
+
+    <!-- 7: Product & Tech -->
+    <section class="slide">
+      <span class="slide-number">7/13</span>
+      <h2>Product & Tech</h2>
+      <div class="two-column">
+        <div>
+          <h3>Architecture</h3>
+          <ul>
+            <li><strong>IL Estimator:</strong> continuously tracks LP value vs HODL baseline.</li>
+            <li><strong>Hedge Engine:</strong> opens and adjusts perp/spot hedges to offset IL.</li>
+            <li><strong>DEX Adapters:</strong> pool-specific logic for major AMMs and vaults.</li>
+            <li><strong>Analytics API:</strong> IL saved, PnL, and risk metrics for integrators.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Resilience</h3>
+          <ul>
+            <li>Fail-safe policies for extreme volatility and liquidity crunches.</li>
+            <li>Backtesting harness and live monitoring for per-pool performance.</li>
+            <li>Upgradeable modules to add chains, DEXes, and hedge venues over time.</li>
+          </ul>
+        </div>
+      </div>
+      <div style="overflow:auto; border:1px solid rgba(245,158,11,.22); border-radius:12px; padding:12px; background:#0b0f14">
+        <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+          <!-- Title -->
+          <text x="400" y="32" text-anchor="middle" font-size="22" font-weight="bold" fill="#f59e0b">LP Pool · IL Engine · Hedge Flow</text>
+
+          <!-- Users Section -->
+          <g id="users">
+            <rect x="50" y="80" width="120" height="60" fill="#0b0f14" stroke="#22c55e" stroke-width="2" rx="8"/>
+            <text x="110" y="113" text-anchor="middle" fill="#e5e7eb" font-size="14">LP Vault</text>
+            <text x="110" y="130" text-anchor="middle" fill="#9ca3af" font-size="12">$10,000</text>
+
+            <rect x="50" y="160" width="120" height="60" fill="#0b0f14" stroke="#22c55e" stroke-width="2" rx="8"/>
+            <text x="110" y="193" text-anchor="middle" fill="#e5e7eb" font-size="14">DEX Pool</text>
+            <text x="110" y="210" text-anchor="middle" fill="#9ca3af" font-size="12">$5,000</text>
+
+            <rect x="50" y="240" width="120" height="60" fill="#0b0f14" stroke="#22c55e" stroke-width="2" rx="8"/>
+            <text x="110" y="273" text-anchor="middle" fill="#e5e7eb" font-size="14">Integrator</text>
+            <text x="110" y="290" text-anchor="middle" fill="#9ca3af" font-size="12">$X,XXX</text>
+          </g>
+
+          <!-- Treasury Pool -->
+          <g id="treasury">
+            <rect x="300" y="140" width="200" height="120" fill="#0b0f14" stroke="#f59e0b" stroke-width="2" rx="12"/>
+            <text x="400" y="168" text-anchor="middle" fill="#e5e7eb" font-size="18" font-weight="bold">IL Engine</text>
+            <text x="400" y="190" text-anchor="middle" fill="#9ca3af" font-size="14">Tracks IL vs HODL</text>
+            <text x="400" y="210" text-anchor="middle" fill="#9ca3af" font-size="12">Computes hedges</text>
+            <text x="400" y="230" text-anchor="middle" fill="#9ca3af" font-size="12">Sends orders</text>
+          </g>
+
+          <!-- Trading Bot Account -->
+          <g id="trading">
+            <rect x="600" y="140" width="150" height="120" fill="#0b0f14" stroke="#f59e0b" stroke-width="2" rx="12"/>
+            <text x="675" y="168" text-anchor="middle" fill="#e5e7eb" font-size="16" font-weight="bold">Hedge Venue</text>
+            <text x="675" y="190" text-anchor="middle" fill="#9ca3af" font-size="14">Perps / Spot</text>
+            <text x="675" y="210" text-anchor="middle" fill="#22c55e" font-size="12">PnL: +$10,000</text>
+            <text x="675" y="230" text-anchor="middle" fill="#f59e0b" font-size="12">Fee: protocol cut</text>
+          </g>
+
+          <!-- Admin Fee Account -->
+          <g id="admin">
+            <rect x="350" y="350" width="150" height="80" fill="#0b0f14" stroke="#f59e0b" stroke-width="2" rx="10"/>
+            <text x="425" y="378" text-anchor="middle" fill="#e5e7eb" font-size="16" font-weight="bold">Fee Split</text>
+            <text x="425" y="400" text-anchor="middle" fill="#9ca3af" font-size="14">DEX / Vault / GRID</text>
+          </g>
+
+          <!-- User Positions Table -->
+          <g id="positions">
+            <rect x="50" y="380" width="250" height="150" fill="none" stroke="#334155" stroke-width="2" rx="8"/>
+            <text x="175" y="402" text-anchor="middle" font-size="14" font-weight="bold" fill="#e5e7eb">LP Performance</text>
+
+            <line x1="60" y1="412" x2="290" y2="412" stroke="#334155"/>
+            <text x="80" y="432" font-size="12" fill="#e5e7eb">Scenario</text>
+            <text x="170" y="432" font-size="12" fill="#e5e7eb">Value</text>
+            <text x="250" y="432" font-size="12" fill="#e5e7eb">IL Saved</text>
+
+            <text x="80" y="452" font-size="11" fill="#9ca3af">Unhedged LP</text>
+            <text x="170" y="452" font-size="11" fill="#9ca3af">$10,000 → $9,000</text>
+            <text x="250" y="452" font-size="11" fill="#9ca3af">–</text>
+
+            <text x="80" y="472" font-size="11" fill="#9ca3af">With GRID</text>
+            <text x="170" y="472" font-size="11" fill="#9ca3af">$10,000 → $9,660</text>
+            <text x="250" y="472" font-size="11" fill="#9ca3af">≈66%</text>
+
+            <text x="80" y="500" font-size="10" fill="#9ca3af">* Illustrative IL mitigation example</text>
+          </g>
+
+          <!-- Arrows -->
+          <path d="M 180 110 L 290 170" stroke="#22c55e" stroke-width="2" fill="none" marker-end="url(#arrowGreen)"/>
+          <path d="M 180 190 L 290 190" stroke="#22c55e" stroke-width="2" fill="none" marker-end="url(#arrowGreen)"/>
+          <path d="M 180 270 L 290 210" stroke="#22c55e" stroke-width="2" fill="none" marker-end="url(#arrowGreen)"/>
+          <text x="230" y="130" font-size="11" fill="#22c55e">LP flows</text>
+
+          <path d="M 510 180 L 590 180" stroke="#f59e0b" stroke-width="3" fill="none" marker-end="url(#arrowAmber)"/>
+          <text x="550" y="170" font-size="11" fill="#f59e0b">Open hedges</text>
+
+          <path d="M 590 220 L 510 220" stroke="#22c55e" stroke-width="3" fill="none" marker-end="url(#arrowGreen)"/>
+          <text x="530" y="240" font-size="11" fill="#22c55e">Return PnL</text>
+
+          <path d="M 425 270 L 425 340" stroke="#f59e0b" stroke-width="2" fill="none" marker-end="url(#arrowAmber)"/>
+          <text x="448" y="305" font-size="11" fill="#f59e0b">Fee split</text>
+
+          <defs>
+            <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L9,3 z" fill="#22c55e"/>
+            </marker>
+            <marker id="arrowAmber" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L9,3 z" fill="#f59e0b"/>
+            </marker>
+          </defs>
+        </svg>
+      </div>
+    </section>
+
+    <!-- 10: Business Model & Unit Economics -->
+    <section class="slide">
+      <span class="slide-number">8/13</span>
+      <h2>Business Model</h2>
+      <ul>
+        <li><strong>Phase 1 – Institutional vaults:</strong> deploy capital into LP + hedge strategies using GRID; earn a <strong>25% performance fee</strong> on net PnL (including IL saved).</li>
+        <li><strong>Phase 2 – Protocol layer:</strong> integrate GRID directly into DEXes and LP vaults; charge a small protocol fee on <strong>swap volume</strong> routed through protected pools (fee-on-volume model).</li>
+        <li>Target: build a <strong>standard IL-protection primitive</strong> so every DEX can offer "protected LP" pools by default.</li>
+      </ul>
+      <div class="metrics">
+        <div class="metric-card"><div class="metric-value">Fund Fees</div><div class="metric-label">Performance fees from early institutional capital</div></div>
+        <div class="metric-card"><div class="metric-value">Protocol Fee</div><div class="metric-label">Tiny take rate on protected DEX TVL</div></div>
+        <div class="metric-card"><div class="metric-value">Scalable</div><div class="metric-label">Once integrated, scales with chain & DEX growth</div></div>
+      </div>
+    </section>
+
+    <!-- 11: Raise & Use of Proceeds -->
+    <section class="slide">
+      <span class="slide-number">9/13</span>
+      <h2>Raise & Use of Proceeds</h2>
+      <h3>We are raising <span class="em">$250,000</span> to productize the IL engine</h3>
+      <div class="metrics">
+        <div class="metric-card"><div class="metric-value">12 mo</div><div class="metric-label">Runway for core team & infra</div></div>
+        <div class="metric-card"><div class="metric-value">2–3</div><div class="metric-label">DEX / vault integrations</div></div>
+        <div class="metric-card"><div class="metric-value">1</div><div class="metric-label">Public IL-mitigation standard for DeFi</div></div>
+      </div>
+      <div class="callout"><strong>Use of funds:</strong> founder salary and core engineering, audits, backtesting infra, BD with first DEX partners, and documentation/SDK so others can integrate.</div>
+    </section>
+
+    <!-- 12: Moat & Competitive Advantage -->
+    <section class="slide">
+      <span class="slide-number">10/13</span>
+      <h2>Moat & Competitive Advantage</h2>
+      <div class="two-column">
+        <div>
+          <h3>Why GRID Wins</h3>
+          <ul>
+            <li><strong>Specialization:</strong> 100% focused on IL, not a general trading shop.</li>
+            <li><strong>Data advantage:</strong> continuous IL/hedge performance data across pools and chains.</li>
+            <li><strong>Protocol-first:</strong> built to be embedded by DEXes and vaults, not just used internally, with a clear split between <strong>GRID Ltd</strong> (software) and a future <strong>GRID DAO</strong> governed by the GRID token.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Why Not Others</h3>
+          <ul>
+            <li>Generalist trading firms do not productize IL protection for the wider ecosystem.</li>
+            <li>Rebalancing bots and vaults are fragmented, not a common IL-mitigation layer.</li>
+            <li>Options-based hedges are expensive and complex; hard to make default for all LPs.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="smallnote">* Deal terms (equity/token structure, investor rights) are detailed in the Investor Deck & term sheet.</p>
+    </section>
+
+    <!-- 13: Team & Advisors -->
+    <section class="slide">
+      <span class="slide-number">11/13</span>
+      <h2>Team</h2>
+      <div class="two-column">
+        <div>
+          <h3>Execution & Track Record</h3>
+          <ul>
+            <li>15+ years in software, data, and systematic trading.</li>
+            <li>Built and operated production systems for 1.5M+ users.</li>
+            <li>Deployed personal capital to test and refine IL mitigation on SOL/USDC in live markets.</li>
+            <li>Solo founder in phase 1; $250k SAFE provides ~12 months of focused execution.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Advisory</h3>
+          <ul>
+            <li>Targeting DeFi-native advisors for DEX BD, token design, and risk.</li>
+            <li>Advisory grants in the <strong>0.5–1.0%</strong> range with 4-year vesting.</li>
+          </ul>
+          <div class="callout">We are coachable and already iterating based on feedback from LPs, founders, and protocol builders.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14: Roadmap -->
+    <section class="slide">
+      <span class="slide-number">12/13</span>
+      <h2>Roadmap</h2>
+      <div class="two-column">
+        <div>
+          <h3>0–6 Months</h3>
+          <ul>
+            <li>Ship IL engine v1 with clear ~66% mitigation baselines.</li>
+            <li>Integrate with first DEX / vault partner and run live pilots.</li>
+            <li>Publish methodology and IL metrics; prepare audit.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>6–12 Months</h3>
+          <ul>
+            <li>Expand to 2–3 major DEXes / chains.</li>
+            <li>Open SDK and docs for external integrators.</li>
+            <li>Design protocol-level fee capture and, if relevant, token mechanics.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15: The Ask -->
+    <section class="slide">
+      <span class="slide-number">13/13</span>
+      <h2>The Ask</h2>
+      <ul>
+        <li>Raise: <strong>$250,000</strong> to take GRID from working engine to widely-integrated protocol.</li>
+        <li>Use: 12-month runway, audits, infra, and 2–3 high-impact DEX / vault integrations.</li>
+        <li>Structure: standard <strong>SAFE</strong> now, with future upside via the GRID governance token for a DAO (Grid Digital Assets) that runs capital using GRID Ltd software.</li>
+        <li>Ideal partners: crypto-native, DeFi infra and LP-focused investors who can open doors to DEXes and institutional capital.</li>
+      </ul>
+      <p class="smallnote" style="margin-top:10px">* Digital assets involve risk. IL mitigation and performance metrics are illustrative and not guaranteed.</p>
+    </section>
+
+  </div>
+</body>
+</html>
